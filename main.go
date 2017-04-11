@@ -3,8 +3,8 @@ package qframe_handler_log
 import (
 	"strings"
 	"log"
-	"github.com/qnib/qframe/types"
-	"github.com/qnib/qframe/utils"
+	"github.com/qnib/qframe-types"
+	"github.com/qnib/qframe-utils"
 	"github.com/zpatrick/go-config"
 	"fmt"
 )
