@@ -3,7 +3,7 @@ package qframe_handler_log
 import (
 	"C"
 	"strings"
-
+	"log"
 	"github.com/qnib/qframe/types"
 	"github.com/qnib/qframe/utils"
 	"github.com/zpatrick/go-config"
@@ -28,6 +28,7 @@ func NewPlugin(qChan qtypes.QChan, cfg config.Config) Plugin {
 
 // Run fetches everything from the Data channel and flushes it to stdout
 func (p *Plugin) Run() {
+	log.Printf("[II] Start log handler v%s", version)
 	bg := p.QChan.Data.Join()
 	inStr, err := p.Cfg.String("handler.log.inputs")
 	if err != nil {
