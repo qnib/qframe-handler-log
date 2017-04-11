@@ -1,7 +1,6 @@
 package qframe_handler_log
 
 import (
-	"C"
 	"strings"
 	"log"
 	"github.com/qnib/qframe/types"
