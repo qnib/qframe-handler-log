@@ -1,12 +1,13 @@
-package qframe_handler_log
+package main
 
 import (
 	"strings"
 	"log"
+	"fmt"
+	"github.com/zpatrick/go-config"
+
 	"github.com/qnib/qframe-types"
 	"github.com/qnib/qframe-utils"
-	"github.com/zpatrick/go-config"
-	"fmt"
 )
 
 const (
@@ -14,15 +15,19 @@ const (
 )
 
 type Plugin struct {
-	QChan qtypes.QChan
-	Cfg config.Config
+	qtypes.Plugin
 }
 
-func NewPlugin(qChan qtypes.QChan, cfg config.Config) Plugin {
-	return Plugin{
-		QChan: qChan,
-		Cfg: cfg,
+func New(qChan qtypes.QChan, cfg config.Config, name string) Plugin {
+	p := Plugin{
+		Plugin: qtypes.Plugin{
+			QChan: qChan,
+			Cfg:   cfg,
+		},
 	}
+	p.Version = version
+	p.Name = name
+	return p
 }
 
 // Run fetches everything from the Data channel and flushes it to stdout
