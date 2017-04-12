@@ -27,14 +27,25 @@
 			"revisionTime": "2017-03-28T15:39:02Z"
 		},
 		{
-			"checksumSHA1": "0ZAGa3Ib2DSTohMb1OsjuahQS6E=",
+			"checksumSHA1": "zodCK6AG5/I4EcNPTma0cRFls1k=",
+			"path": "github.com/grafov/bcast",
+			"revision": "15c6a671b975da343a7b04bba6e330e7dc4904b9",
+			"revisionTime": "2017-03-04T07:09:54Z"
+		},
+		{
+			"checksumSHA1": "FDEfwz56PeYd56UNtDpGJltMf2o=",
+			"path": "github.com/qnib/qframe-handler-log",
+			"revision": "0ccb59ff7d5d40a0921160d55f118f0b7cd69530",
+			"revisionTime": "2017-04-11T20:30:27Z"
+		},
+		{
+			"checksumSHA1": "QAFgagBI0ADCyXX1YDn3FDHJVMk=",
 			"path": "github.com/qnib/qframe-types",
-			"revision": "65a07da05a86736305fa6ea8356baf5eddbd5f5c",
-			"revisionTime": "2017-04-11T20:27:50Z"
+			"revision": "e4e1b7a6d0532a32f4f740f002717bca39fddd4e",
+			"revisionTime": "2017-04-12T08:13:49Z"
 		},
 		{
 			"checksumSHA1": "E4pS76cF5huNrgXLvhDe80076BI=",
-			"origin": "github.com/qnib/qframe-handler-log/vendor/github.com/qnib/qframe-utils",
 			"path": "github.com/qnib/qframe-utils",
 			"revision": "c82a62f900990a781059e80781d9c943ade050ea",
 			"revisionTime": "2017-04-11T20:25:15Z"
