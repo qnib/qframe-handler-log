@@ -2,7 +2,6 @@ package qframe_handler_log
 
 import (
 	"strings"
-	"log"
 	"fmt"
 	"github.com/zpatrick/go-config"
 
@@ -12,6 +11,7 @@ import (
 
 const (
 	version = "0.1.0"
+	pluginTyp = "handler"
 )
 
 type Plugin struct {
@@ -20,10 +20,7 @@ type Plugin struct {
 
 func New(qChan qtypes.QChan, cfg config.Config, name string) Plugin {
 	p := Plugin{
-		Plugin: qtypes.Plugin{
-			QChan: qChan,
-			Cfg:   cfg,
-		},
+		Plugin: qtypes.NewNamedPlugin(qChan, cfg, pluginTyp, name, version),
 	}
 	p.Version = version
 	p.Name = name
@@ -32,7 +29,7 @@ func New(qChan qtypes.QChan, cfg config.Config, name string) Plugin {
 
 // Run fetches everything from the Data channel and flushes it to stdout
 func (p *Plugin) Run() {
-	log.Printf("[II] Start log handler v%s", version)
+	p.Log("info", fmt.Sprintf("Start log handler v%s", p.Version))
 	bg := p.QChan.Data.Join()
 	inStr, err := p.Cfg.String("handler.log.inputs")
 	if err != nil {
