@@ -3,7 +3,6 @@ package qframe_handler_log
 import (
 	"fmt"
 	"github.com/zpatrick/go-config"
-	"strings"
 
 	"github.com/qnib/qframe-types"
 	"github.com/qnib/qframe-utils"
@@ -31,18 +30,18 @@ func New(qChan qtypes.QChan, cfg config.Config, name string) Plugin {
 func (p *Plugin) Run() {
 	p.Log("info", fmt.Sprintf("Start log handler v%s", p.Version))
 	bg := p.QChan.Data.Join()
-	inStr, err := p.Cfg.String("handler.log.inputs")
-	if err != nil {
-		inStr = ""
-	}
-	inputs := strings.Split(inStr, ",")
+	inputs := p.GetInputs()
 	for {
-		val := bg.Recv()
-		qm := val.(qtypes.QMsg)
-		if len(inputs) != 0 && !qutils.IsInput(inputs, qm.Source) {
-			//fmt.Printf("%s %-7s sType:%-6s sName:%-10s[%d] DROPED : %s\n", qm.TimeString(), qm.LogString(), qm.Type, qm.Source, qm.SourceID, qm.Msg)
-			continue
+		select {
+		case val := <-bg.Read:
+			switch val.(type) {
+			case qtypes.QMsg:
+				qm := val.(qtypes.QMsg)
+				if len(inputs) != 0 && !qutils.IsInput(inputs, qm.Source) {
+					continue
+				}
+				p.Log("info" , fmt.Sprintf("%-7s sType:%-6s sName:[%d]%-10s %s\n", qm.LogString(), qm.Type, qm.SourceID, qm.Source, qm.Msg))
+			}
 		}
-		fmt.Printf("%s %-7s sType:%-6s sName:[%d]%-10s %s\n", qm.TimeString(), qm.LogString(), qm.Type, qm.SourceID, qm.Source, qm.Msg)
 	}
 }
