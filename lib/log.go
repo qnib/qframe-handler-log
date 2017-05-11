@@ -11,6 +11,7 @@ import (
 const (
 	version   = "0.1.3"
 	pluginTyp = "handler"
+	pluginPkg = "log"
 )
 
 type Plugin struct {
@@ -19,7 +20,7 @@ type Plugin struct {
 
 func New(qChan qtypes.QChan, cfg config.Config, name string) Plugin {
 	p := Plugin{
-		Plugin: qtypes.NewNamedPlugin(qChan, cfg, pluginTyp, name, version),
+		Plugin: qtypes.NewNamedPlugin(qChan, cfg, pluginTyp, pluginPkg, name, version),
 	}
 	p.Version = version
 	p.Name = name
