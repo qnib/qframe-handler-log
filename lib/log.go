@@ -18,13 +18,13 @@ type Plugin struct {
 	qtypes.Plugin
 }
 
-func New(qChan qtypes.QChan, cfg config.Config, name string) Plugin {
+func New(qChan qtypes.QChan, cfg *config.Config, name string) (Plugin, error) {
 	p := Plugin{
 		Plugin: qtypes.NewNamedPlugin(qChan, cfg, pluginTyp, pluginPkg, name, version),
 	}
 	p.Version = version
 	p.Name = name
-	return p
+	return p, nil
 }
 
 // Run fetches everything from the Data channel and flushes it to stdout
